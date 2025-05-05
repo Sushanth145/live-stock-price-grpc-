@@ -1,0 +1,20 @@
+// protos/stock.proto
+
+syntax = "proto3";
+
+package stock;
+
+service StockService {
+  rpc GetCurrentPrice (StockRequest) returns (StockResponse);
+  rpc SubscribeStockPrice (StockRequest) returns (stream StockResponse);
+}
+
+message StockRequest {
+  string symbol = 1;
+}
+
+message StockResponse {
+  string symbol = 1;
+  double price = 2;
+  int64 timestamp = 3;
+}
